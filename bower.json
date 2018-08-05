@@ -1,0 +1,22 @@
+{
+  "name": "2handstore01",
+  "description": "Framgia Project",
+  "main": "",
+  "authors": [
+    "Tien Nguyen <nguyentien1098@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tiennguyen98/2handstore01",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Font-Awesome": "https://github.com/FortAwesome/Font-Awesome.git#^5.2.0",
+    "bootstrap": "https://github.com/twbs/bootstrap.git#^4.1.3",
+    "sufee-admin-dashboard": "https://github.com/puikinsh/sufee-admin-dashboard.git"
+  }
+}
