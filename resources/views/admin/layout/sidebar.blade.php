@@ -64,17 +64,17 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="menu-icon fa fa-list-alt"></i>
-                        @lang('Comments')
+                        @lang('admin.reports.list')
                     </a>
                     <ul class="sub-menu children dropdown-menu">
                         <li>
-                            <i class="fa fa-plus-square"></i>
-                            <a href="{{ route('admin.comments.index') }}">
-                                @lang('admin.comment.list')
+                            <i class="fa fa-list-ul"></i>
+                            <a href="{{ route('admin.reports.index') }}">
+                                @lang('admin.reports.list')
                             </a>
                         </li>
                     </ul>
-                </li>
+                 </li>
                 <h3 class="menu-title">@lang('admin.system.system')</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
                     <a href="{{ route('admin.config.index') }}"> <i class="menu-icon fa fa-gear"></i>

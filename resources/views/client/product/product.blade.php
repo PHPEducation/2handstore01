@@ -49,6 +49,14 @@
                 </div>
             </div>
             <div class="product-detail">
+                <div class="product-title">
+                    <h1>
+                        <label>{{ __('Contact') }} :</label>
+                        <span class="text-danger"><strong>{{ $product->user->phone }}</strong></span>
+                    </h1>
+                </div>
+            </div>
+            <div class="product-detail">
                 <div class="shipping">
                     {!! 
                         Form::open([
@@ -92,6 +100,7 @@
                         <i class="fas fa-shopping-cart"></i>
                         @lang('client.product.buynow')
                     </a>
+                    <button class="btn btn-secondary report ml-5" type="button" data-toggle="modal" data-target="#report-modal">{{ __('Report') }}</button>
                 </div>
             </div>
             <div class="product-infor">
@@ -143,7 +152,7 @@
                         <span name="owner-address">Hà Đông, Hà Nội</span>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
     <div class="comment-section mt-3">
@@ -216,5 +225,61 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="report-modal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('Report') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    {!! Form::label(__('Type'), null, ['class' => 'col-sm-3']) !!}
+                    <div class="col-sm-9">
+                        {!! Form::select('type', trans('message.type'), null, [
+                            'id' => 'type',
+                            'class' => 'form-control'
+                        ]) !!}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {!! Form::label(__('Description'), null, ['class' => 'col-sm-3']) !!}
+                    <div class="col-sm-12">
+                        {!! Form::textarea('content', null, [
+                                'id' => 'report-content',
+                                'class' => 'form-control',
+                                'rows' => '3'
+                            ]
+                        ) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="report('{{ route('client.report.store', ['id' => $product->id]) }}')" 
+                    data-dismiss="modal" data-toggle="modal" data-target="#message">{{ __('Submit') }}</button>
+                <button class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="message">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{ __('Sent') }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>{{ __('Your Report Have Been Sent') }}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection

@@ -47,6 +47,9 @@ return [
     ],
     'comment' => [
         'list' => 'List Comments'
+    ],
+    'reports' => [
+        'list' => 'Reports List'
     ]
     
 ];

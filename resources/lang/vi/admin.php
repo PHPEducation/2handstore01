@@ -45,6 +45,9 @@ return [
     ],
     'comment' => [
         'list' => 'Các Bình Luận'
+    ],
+    'reports' => [
+        'list' => 'Danh Sách Tố Cáo'
     ]
     
 ];

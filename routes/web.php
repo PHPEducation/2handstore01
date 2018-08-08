@@ -62,6 +62,15 @@ Route::group([
             Route::put('/', 'Admin\ConfigController@save')->name('save');
         }
     );
+    Route::delete('/categories/delete', 'CategoryController@destroy')->name('categories.delete');
+    Route::resource('/categories', 'CategoryController');
+    Route::group([
+        'prefix' => '/reports',
+        'as' => 'reports.'
+    ], function () {
+        Route::get('/', 'ReportController@index')->name('index');
+        Route::delete('/destroy', 'ReportController@destroy')->name('destroy');
+    });
 });
 
 Route::group(
@@ -79,6 +88,20 @@ Route::group(
         });
     }
 );
+
+Route::group([
+    'prefix' => '/client',
+    'as' => 'client.',
+], function () {
+    Route::group([
+        'prefix' => '/products',
+        'as' => 'products.'
+    ], function () {
+        Route::get('/show/{id}', 'ProductController@show')->name('show');
+        Route::post('/comment/{id}', 'CommentController@store')->name('comment')->middleware('auth');
+    });
+    Route::post('/report/{id}', 'ReportController@store')->name('report.store')->middleware('auth');
+});
 
 Auth::routes();
 
