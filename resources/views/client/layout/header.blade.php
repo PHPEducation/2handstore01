@@ -20,7 +20,12 @@
                             <li class="font-weight-bold"><a href="{{ route('register') }}"> @lang('auth.register') </a></li>
                             <li class="font-weight-bold"><a href="{{ route('login') }}"> @lang('auth.login') </a></li>
                         @else
-                        <li class="mr-auto"><a href="{{ route('client.notifications.index') }}"><i class="fas fa-bell"></i> @lang('client.Notifications') ({{ Auth::user()->getNumberNotify() }})</a></li>
+                        <li class="mr-auto">
+                            <a href="{{ route('client.notifications.index') }}">
+                                <i class="fas fa-bell"></i> 
+                                @lang('client.Notifications') (<span class="count_notify">{{ Auth::user()->getNumberNotify() }}</span>)
+                            </a>
+                        </li>
                         <div class="dropdown d-inline">
                             <li class="font-weight-bold dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <a href="#"> {{ Auth::user()->name }} </a>

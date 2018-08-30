@@ -18,10 +18,9 @@ class HomeController extends Controller
     private $product;
 
     public function __construct(
-        CategoryRepository $categoryRepository, 
+        CategoryRepository $categoryRepository,
         ProductRepository $productRepository
-    )
-    {
+    ) {
         $this->category = $categoryRepository;
         $this->product = $productRepository;
     }
