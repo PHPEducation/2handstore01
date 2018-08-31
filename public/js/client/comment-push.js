@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     Pusher.logToConsole = true;
 
-    var comment = new Pusher('350836dd3d57ea3538c6', {
+    var comment = new Pusher('bafb5beb21f5300fc328', {
         cluster: 'ap1',
         encrypted: true
     });
@@ -12,6 +12,7 @@ $(document).ready(function () {
     comment_channel.bind('App\\Events\\CommentEvent', function (data) {
         var element = `<a class="notify_link" href="${data['link']}">${data['message']}</a>`;
         $('.notify').append(element);
+        $('.count_notify').text(parseInt($('.count_notify').text()) + 1);
         setTimeout(function () {
             $('.notify_link').remove();
         }, 20000);

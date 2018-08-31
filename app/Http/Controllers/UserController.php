@@ -224,4 +224,11 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+    public function searchUser(Request $request)
+    {
+        $users = $this->userRepository->showCustomer($request->search, config('database.chat_customer'));
+
+        return view('admin.chat.user', compact('users'));
+    }
 }

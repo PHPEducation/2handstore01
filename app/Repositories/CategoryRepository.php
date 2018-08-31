@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\DB;
+
 class CategoryRepository extends EloquentRepository
 {
     public function model()
@@ -37,9 +39,19 @@ class CategoryRepository extends EloquentRepository
             'categories' => [],
             'numbers' => [],
         ];
-        foreach ($this->model->get() as $value) {
+        $counts = DB::table('categories')
+            ->join(DB::raw(
+                        '(select `category_id`, count(*) as number
+                            from `products`
+                            group by `category_id`) as productsCount'
+                        ), function ($join) {
+                            $join->on('categories.id', 'productsCount.category_id');
+                        })
+            ->select('name', 'productsCount.number')->get();
+
+        foreach ($counts as $value) {
             $data['categories'][] = $value->name;
-            $data['numbers'][] = $value->products()->count();
+            $data['numbers'][] = $value->number;
         }
 
         return $data;

@@ -107,7 +107,10 @@ function sendMessage()
 
 $(document).on('input', '.search-bar', function () {
     var search = $(this).val();
-    if (search.length < 2) return;
+    if (search.length < 2) {
+        $('.search-result').html('');
+        return;
+    };
     $.ajax({
         method: 'get',
         url: $(this).attr('data-url'),
