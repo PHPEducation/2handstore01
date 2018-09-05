@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class DeleteProduct extends Notification implements ShouldQueue
+class DeleteProduct extends Notification
 {
     use Queueable;
 

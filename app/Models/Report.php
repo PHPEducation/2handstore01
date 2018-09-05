@@ -42,4 +42,9 @@ class Report extends Model
         $report->fill($request->all());
         $report->save();
     }
+
+    public function scopeUnseenReport($query)
+    {
+        return Report::count();
+    }
 }

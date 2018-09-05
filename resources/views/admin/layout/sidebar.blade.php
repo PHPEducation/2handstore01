@@ -79,6 +79,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="menu-icon fa fa-list-alt"></i>
                         @lang('admin.reports.list')
+                        @if($unseenReport > 0)
+                            <b class="report-num">{{ $unseenReport }}</b>
+                        @endif
                     </a>
                     <ul class="sub-menu children dropdown-menu">
                         <li>

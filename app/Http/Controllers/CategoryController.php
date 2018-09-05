@@ -63,7 +63,7 @@ class CategoryController extends Controller
         return [
             'name' => 'required|string|max:255|unique:categories,name',
             'slug' => 'required|string|max:255|unique:categories,slug',
-            'image' => 'mimes:jpeg,png,jpg,bmp,svg|max:2048',
+            'image' => 'mimes:jpeg,png,jpg,bmp,svg|max:2048|required',
             'parent_id' => 'nullable|numeric',
         ];
     }
@@ -128,7 +128,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, $this->getValidateRule());
+        $this->validate($request, 
+            [
+                'name' => 'required|string|max:255|unique:categories,name,' . $id,
+                'slug' => 'required|string|max:255|unique:categories,slug,' . $id,
+                'image' => 'mimes:jpeg,png,jpg,bmp,svg|max:2048',
+                'parent_id' => 'nullable|numeric',
+            ]
+        );
 
         $category = Category::findOrFail($id);
         $this->saveCategory($request, $category);

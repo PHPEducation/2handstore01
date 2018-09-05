@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use App\Repositories\MessageRepository;
+use App\Report;
 
 class UnseenMessage
 {
@@ -25,7 +26,11 @@ class UnseenMessage
         if (!$request->is('admin/*')) {
             View::share('conversation', $conversation);
         }
+
         View::share('unseenMessage', $unseenMessage);
+
+        $unseenReport = Report::unseenReport();
+        View::share('unseenReport', $unseenReport);
         
         return $next($request);
     }
