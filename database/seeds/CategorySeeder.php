@@ -27,9 +27,10 @@ class CategorySeeder extends Seeder
             Category::create([
                 'name' => $value,
                 'slug' => str_slug($value),
-                'thumbnail' => 'cate' . $i . '.jpg',
+                'thumbnail' => 'cate' . $i . '.jpeg',
                 'parent_id' => null
             ]);
+            $i++;
         }
     }
 }

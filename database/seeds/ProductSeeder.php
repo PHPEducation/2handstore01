@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\User;
 use App\Product;
 use App\Category;
+use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
@@ -22,7 +23,7 @@ class ProductSeeder extends Seeder
                 'thumbnail' => 'product' . rand(1, 25) . '.jpeg',
                 'detail' => $faker->paragraph(),
                 'status' => rand(0, 1),
-                'user_id' => rand(2, 43),
+                'user_id' => User::get()->random()->id,
                 'category_id' => Category::get()->random()->id,
                 'province_id' => rand(1, 705)
             ]);
