@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     Pusher.logToConsole = true;
 
-    var comment = new Pusher('350836dd3d57ea3538c6', {
+    var comment = new Pusher('bafb5beb21f5300fc328', {
         cluster: 'ap1',
         encrypted: true
     });

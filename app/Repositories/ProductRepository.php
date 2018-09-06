@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ProductRepository extends EloquentRepository
 {
@@ -86,14 +87,19 @@ class ProductRepository extends EloquentRepository
     public function analytics($year)
     {
         $analytics = [];
-        for ($i = 1; $i <= 12; $i++) { 
-            $month = Carbon::now()->year($year)->month($i)->day(1)->toDateTimeString();
-            $next_month = Carbon::now()->year($year)->month($i + 1)->day(1)->toDateTimeString();
-            $analytics[] = $this->model->where('created_at', '>=', $month)
-                                        ->where('created_at', '<', $next_month)
-                                        ->count();
+        for ($i = 1; $i <= 12; $i++) {
+            $analytics[$i] = 0;
         }
 
-        return $analytics;
+        $products = DB::table('products')
+            ->select(DB::raw('MONTH(created_at) as month, count(*) as product'))
+            ->whereYear('created_at', $year)
+            ->groupBy(DB::raw('month'))
+            ->orderBy(DB::raw('month'))->get();
+        foreach ($products as $value) {
+            $analytics[$value->month] = $value->product;
+        }
+
+        return $analytics = array_values($analytics);
     }
 }

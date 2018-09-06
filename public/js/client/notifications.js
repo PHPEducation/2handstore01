@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var channel = $('channel').text();
 
-    var pusher = new Pusher('350836dd3d57ea3538c6', {
+    var pusher = new Pusher('bafb5beb21f5300fc328', {
         cluster: 'ap1',
         encrypted: true
     });
